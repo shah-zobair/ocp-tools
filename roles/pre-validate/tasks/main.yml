@@ -1,0 +1,21 @@
+- name: Check yum Repos
+  shell: yum repolist
+  ignore_errors: yes
+  register: output
+- debug: var=output.stdout_lines
+
+- name: Check Remote Artifactory/Registry is accessible
+  shell: curl -k {{ oreg_url_master }}
+  ignore_errors: yes
+
+- name: Check Master Public address is resolvable
+  shell: dig {{ openshift_master_cluster_public_hostname }} | grep -a1 "ANSWER SECTION"
+  ignore_errors: yes
+
+- name: Check Master Internal address is resolvable
+  shell: dig {{ openshift_master_cluster_hostname }} | grep -a1 "ANSWER SECTION"
+  ignore_errors: yes
+
+- name: Test Wildcard subdomain is resolvable
+  shell: dig test.{{ openshift_master_default_subdomain }} | grep -a1 "ANSWER SECTION"
+  ignore_errors: yes

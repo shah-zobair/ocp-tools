@@ -1,0 +1,5 @@
+---
+- name: Run Pre Validation on all Nodes
+  hosts: nodes
+  roles:
+   - { role: pre-validate }

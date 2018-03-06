@@ -1,0 +1,9 @@
+
+[nodes:vars]
+openshift_master_cluster_hostname=master-internal.shahzobair.com
+openshift_master_cluster_public_hostname=master.shahzobair.com
+openshift_master_default_subdomain=apps.shahzobair.com
+oreg_url_master=https://google.com
+
+[nodes]
+localhost
